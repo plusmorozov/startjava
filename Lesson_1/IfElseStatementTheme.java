@@ -60,22 +60,21 @@ public class IfElseStatementTheme {
         }
 
         System.out.println("\n4. Поиск одинаковых цифр в числах");
-        int num4 = 273;
-        int num5 = 175;
+        int num4 = 173;
+        int num5 = 375;
         boolean isEqualNumber = false;
+        String stingOut = "В первом разряде чисел " + num4 + " и " + num5 
+            + " находятся одинаковые цифры: ";
         if (num4 / 100 == num5 / 100) {
-            System.out.println("В первом разряде чисел " + num4 + " и " + num5
-                + " находятся одинаковые цифры: " + num4 / 100);
+            System.out.println(stingOut + num4 / 100);
             isEqualNumber = true;
         }
         if (num4 / 10 % 10 == num5 / 10 % 10) {
-            System.out.println("Во втором разряде чисел " + num4 + " и " + num5
-                + " находятся одинаковые цифры: " + num4 / 10 % 10);
+            System.out.println(stingOut + num4 / 10 % 10);
             isEqualNumber = true;
         }
         if (num4 % 10 == num5 % 10) {
-            System.out.println("В третьем разряде чисел " + num4 + " и " + num5
-                + " находятся одинаковые цифры: " + num4 % 10);
+            System.out.println(stingOut + num4 % 10);
             isEqualNumber = true;
         }
         if (!isEqualNumber) {
@@ -97,18 +96,16 @@ public class IfElseStatementTheme {
 
         System.out.println("\n6. Определение суммы вклада и начисленных банком %");
         int deposit = 300000;
-        int percent = 0;
+        double percent = 0;
         if (deposit < 100000) {
-            percent = 5;
-        }        
-        if (deposit > 100000 && deposit < 300000) {
-            percent = 7;
-        }
-        if (deposit >= 300000) {
-            percent = 10;
+            percent = deposit * 0.05;
+        } else if (deposit > 100000 && deposit < 300000) {
+            percent = deposit * 0.07;
+        } else if (deposit >= 300000) {
+            percent = deposit * 0.1;
         }
         System.out.println("Сумма вклада = " + deposit + ", начисленный процент = "
-                + deposit * percent / 100 + ", итоговая сумма = " + (deposit + (deposit * percent / 100)));
+                + percent + ", итоговая сумма = " + (deposit + percent));
 
         System.out.println("\n7. Определение оценки по предметам");
         int percentHistory = 59;
@@ -117,26 +114,20 @@ public class IfElseStatementTheme {
         int gradeProg = 0;
         if (percentHistory <= 60) {
             gradeHisory = 2;
-        }
-        if (percentHistory > 60 && percentHistory < 74) {
+        } else if (percentHistory > 60 && percentHistory < 74) {
             gradeHisory = 3;
-        }
-        if (percentHistory > 73 && percentHistory < 92) {
+        } else if (percentHistory > 73 && percentHistory < 92) {
             gradeHisory = 4;
-        }
-        if (percentHistory > 91) {
+        } else if (percentHistory > 91) {
             gradeHisory = 5;
         }
         if (percentProg <= 60) {
             gradeProg = 2;
-        }
-        if (percentProg > 60 && percentProg < 74) {
+        } else if (percentProg > 60 && percentProg < 74) {
             gradeProg = 3;
-        }
-        if (percentProg > 73 && percentProg < 92) {
+        } else if (percentProg > 73 && percentProg < 92) {
             gradeProg = 4;
-        }
-        if (percentProg > 91) {
+        } else if (percentProg > 91) {
             gradeProg = 5;
         }
         System.out.println(gradeHisory + " История" + "\n" + gradeProg + " Программирование");
@@ -158,7 +149,7 @@ public class IfElseStatementTheme {
         int money = 567;
         int amountBanknotesInStock10 = 5;
         int amountBanknotes100 = money / 100;
-        int amountBanknotes10 = money - amountBanknotes100 * 100;
+        int amountBanknotes10 = (money - amountBanknotes100 * 100) / 10;
         int amountBanknotes1 = money - amountBanknotes100 * 100 - amountBanknotes10 * 10;
         if (amountBanknotes10 > amountBanknotesInStock10) {
             amountBanknotes1 += (amountBanknotes10 - amountBanknotesInStock10) * 10;
