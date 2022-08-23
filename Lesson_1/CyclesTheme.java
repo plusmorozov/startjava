@@ -37,15 +37,14 @@ public class CyclesTheme {
 
         System.out.println("\n\n3. Вывод реверсивного числа и суммы его цифр");
         int srcNum = 12341;
-        int copySrcNum = srcNum;
         System.out.println("Исходное число = " + srcNum);
         System.out.print("Реверсивное число = ");        
         int sum = 0;
-        while (copySrcNum != 0) {
-            int digit = copySrcNum % 10;
+        while (srcNum != 0) {
+            int digit = srcNum % 10;
             System.out.print(digit);
             sum += digit;
-            copySrcNum /= 10;
+            srcNum /= 10;
         }
         System.out.println("\nСумма цифр = " + sum);
 
@@ -65,7 +64,7 @@ public class CyclesTheme {
         System.out.println("\n\n5. Проверка количества единиц на четность");
         i = 1;
         srcNum = 311591;
-        copySrcNum = srcNum;
+        int copySrcNum = srcNum;
         count = 0;
         while (copySrcNum != 0) {
             if (copySrcNum % 10 == 1) {
