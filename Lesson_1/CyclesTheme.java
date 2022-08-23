@@ -42,9 +42,9 @@ public class CyclesTheme {
         System.out.print("Реверсивное число = ");        
         int sum = 0;
         while (copySrcNum != 0) {
-            int partNum = copySrcNum % 10;
-            System.out.print(partNum);
-            sum += partNum;
+            int digit = copySrcNum % 10;
+            System.out.print(digit);
+            sum += digit;
             copySrcNum /= 10;
         }
         System.out.println("\nСумма цифр = " + sum);
@@ -53,10 +53,8 @@ public class CyclesTheme {
         int count = 0;
         for (i = 1; i < 24; i += 2) {
             count++;
-            if (count % 5 != 0) {
-                System.out.printf("%3d", i);
-            } else {
-                System.out.printf("%3d", i);
+            System.out.printf("%3d", i);
+            if (count % 5 == 0) {
                 System.out.println();
             }
         }
@@ -66,26 +64,24 @@ public class CyclesTheme {
 
         System.out.println("\n\n5. Проверка количества единиц на четность");
         i = 1;
-        srcNum = 3141591;
+        srcNum = 311591;
         copySrcNum = srcNum;
         count = 0;
-        while (i <= 7) {
+        while (copySrcNum != 0) {
             if (copySrcNum % 10 == 1) {
                 count++;
             }
             copySrcNum /= 10;
-            i++;
         }
+        String stringOutFormat = "Число %7d содержит %2d %s количество единиц";
         if (count % 2 == 0) {
-            System.out.println("Число " + srcNum + " содержит " + count 
-                    + " (четное) количество единиц");
+            System.out.printf(stringOutFormat, srcNum, count, "(четное)");
         } else {
-            System.out.println("Число " + srcNum + " содержит " + count 
-                    + " (нечетное) количество единиц");
+            System.out.printf(stringOutFormat, srcNum, count, "(нечетное)");
         }
-        
+
         System.out.println("\n6. Отображение фигур в консоли");
-        
+
         // прямоугольник
         int j = 11;
         for (i = 1; i <= 5; i++) {
@@ -110,29 +106,29 @@ public class CyclesTheme {
         System.out.println();
 
         // равнобедренный треугольник
+        int numLines = 4;
+        int countLines = 0;
         i = 0;
         do {
-            for (j = 0; j < i + 1; j++) {
-                System.out.print("$");
+            if (i <= numLines / 2) {
+                countLines++;
+            } else {
+                countLines--;
             }
-            System.out.println();
+            j = 0;
+            do {
+                System.out.print("$");
+                j++;
+            } while (j < countLines);
             i++;
-        } while (i < 3);
-        i = 2;
-        do {
-            for (j = 0; j < i; ++j) {
-                System.out.print("$");
-            }
             System.out.println();
-            i--;
-        } while (i > 0);
+        } while (i <= numLines);
 
         System.out.println("\n7. Отображение ASCII-символов");
         System.out.printf("%4s%8s%n", "DEC", "CHAR");
         for (char symbol = '\0'; symbol <= '/'; symbol++) {
             if (symbol % 2 != 0) {
-                System.out.printf("%3d%8c", (int) symbol, symbol);
-                System.out.println();
+                System.out.printf("%3d%8c%n", (int) symbol, symbol);
             }
         }
         for (char symbol = 'a'; symbol <= 'z'; symbol++) {
@@ -156,25 +152,24 @@ public class CyclesTheme {
 
         System.out.println("\n9. Определение, является ли число счастливым");
         srcNum = 179854;
-        num1 = srcNum;
         int sumLeft = 0;
         int sumRight = 0;
-        for (i = 1; num1 != 0; i++) {
-            if (i <= ((Math.log10(srcNum)+1)/2)) {
-                sumRight += num1 % 10;
-                num1 /= 10;
-            }
-            if (i > ((Math.log10(srcNum)+1)/2)) {
-                sumLeft += num1 % 10;
-                num1 /= 10;
-            }
+        int numLeft = srcNum / 1000;
+        int numRight = srcNum % 1000;
+        while (numLeft != 0) {
+            sumLeft += numLeft % 10;
+            numLeft /= 10;
+            sumRight += numRight % 10;
+            numRight /= 10; 
         }
-        System.out.println("Сумма цифр " + srcNum / 1000 + " = " + sumLeft);
-        System.out.println("Сумма цифр " + srcNum % 1000 + " = " + sumRight);
-        if (sumLeft == sumRight) {
-            System.out.println("Число " + srcNum + " является счастливым");
+        stringOutFormat = "Сумма цифр %d = %d%n";
+        System.out.printf(stringOutFormat, srcNum / 1000, sumLeft);
+        System.out.printf(stringOutFormat, srcNum % 1000, sumRight);
+        stringOutFormat = "Число %d является %s%n";
+         if (sumLeft == sumRight) {
+            System.out.printf(stringOutFormat, srcNum, "счастливым");
         } else {
-            System.out.println("Число " + srcNum + " является несчастливым");
+            System.out.printf(stringOutFormat, srcNum, "несчастливым");
         }
 
         System.out.println("\n10. Вывод таблицы умножения Пифагора");
