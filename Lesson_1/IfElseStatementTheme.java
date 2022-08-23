@@ -63,18 +63,18 @@ public class IfElseStatementTheme {
         int num4 = 173;
         int num5 = 375;
         boolean isEqualNumber = false;
-        String stingOut = "В первом разряде чисел " + num4 + " и " + num5 
+        String stringOut = "В первом разряде чисел " + num4 + " и " + num5 
             + " находятся одинаковые цифры: ";
         if (num4 / 100 == num5 / 100) {
-            System.out.println(stingOut + num4 / 100);
+            System.out.println(stringOut + num4 / 100);
             isEqualNumber = true;
         }
         if (num4 / 10 % 10 == num5 / 10 % 10) {
-            System.out.println(stingOut + num4 / 10 % 10);
+            System.out.println(stringOut + num4 / 10 % 10);
             isEqualNumber = true;
         }
         if (num4 % 10 == num5 % 10) {
-            System.out.println(stingOut + num4 % 10);
+            System.out.println(stringOut + num4 % 10);
             isEqualNumber = true;
         }
         if (!isEqualNumber) {
