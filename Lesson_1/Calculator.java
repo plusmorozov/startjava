@@ -8,7 +8,7 @@ public class Calculator {
             result = num1 + num2;
         } else if (mathOperation == '-') {
             result = num1 - num2;
-        } else if (mathOperation == '-') {
+        } else if (mathOperation == '+') {
             result = num1 - num2;
         } else if (mathOperation == '*') {
             result = num1 * num2;
