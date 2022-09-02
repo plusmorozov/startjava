@@ -1,4 +1,5 @@
 public class Person {
+    
     String gender;
     String name;
     int height;
@@ -21,7 +22,7 @@ public class Person {
         System.out.println("Человек может говорить");
     }
 
-    public void learnJava () {
+    public void learnJava() {
         System.out.println("Человек может учить Java");
     }
 
