@@ -98,12 +98,14 @@ public class ArrayTheme {
         }
         System.out.println();
     }
+
     private static void printArray(double[] numbers) {
         for(double number : numbers) {
             System.out.print(number + " ");
         }
         System.out.println();
     }
+
     private static void printArray(double[] numbers, int numReturnNewLine) {
         for(int i = 0; i < numbers.length; i++) {
             System.out.printf("%.3f" + " ", numbers[i]);
@@ -113,6 +115,7 @@ public class ArrayTheme {
         }
         System.out.println();
     }
+
     private static void printArray(int[] numbers, int numReturnNewLine) {
         for(int i = 0; i < numbers.length; i++) {
             if((i % numReturnNewLine != 0) && (i != 0)) {
