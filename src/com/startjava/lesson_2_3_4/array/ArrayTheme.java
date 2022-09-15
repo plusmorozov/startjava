@@ -2,30 +2,31 @@ package com.startjava.lesson_2_3_4.array;
 
 public class ArrayTheme {
     public static void main(String[] args) {
-        int length = 0;
         System.out.println("1. Реверс значений массива");
         int[] numbers = {3, 5, 2, 1, 7, 4, 6};
+        int length = numbers.length;
         System.out.println("Исходный массив:");
         printArray(numbers);
-        length = numbers.length;
-        for(int i = 0; i < length / 2; i++) {
+        for(int i = 0; i <= length / 2; i++) {
             int tmp = numbers[i];
-            numbers[i] = numbers[length - i - 1];
-            numbers[length - i - 1] = tmp;
+            length--;
+            numbers[i] = numbers[length];
+            numbers[length] = tmp;
+
         }
         System.out.println("Массив после модификации:");
         printArray(numbers);
 
         System.out.println("\n2. Вывод произведения элементов массива");
-        int[] numbers2 = new int[10];
-        length = numbers2.length;
+        numbers = new int[10];
+        length = numbers.length;
         for(int i = 0; i < length; i++) {
-            numbers2[i] = i;
+            numbers[i] = i;
         }
-        int multiplicationNumber = 1;
+        int multNumbers = 1;
         for(int i = 1; i < length - 1; i++) {
-            multiplicationNumber *= numbers2[i];
-            System.out.print(i == length - 2 ? i + " = " + multiplicationNumber : i + " * ");
+            multNumbers *= numbers[i];
+            System.out.print(i + (i == length - 2 ? " = " + multNumbers : " * "));
         }
 
         System.out.println("\n\n3. Удаление элементов массива");
@@ -35,11 +36,12 @@ public class ArrayTheme {
             numbers3[i] = Math.random();
         }
         System.out.println("Исходный массив:");
-        printArray(numbers3,7);
+        printArray(numbers3, 7);
         int countZeroCell = 0;
-        double valueMiddleCeil = numbers3[(int) Math.round((double) length / 2)];
+        double valueMiddleCell = numbers3[length / 2];
+        System.out.println(valueMiddleCell);
         for(int i = 0; i < length; i++) {
-            if(numbers3[i] > valueMiddleCeil) {
+            if(numbers3[i] > valueMiddleCell) {
                 numbers3[i] = 0;
                 countZeroCell++;
             }
@@ -49,14 +51,14 @@ public class ArrayTheme {
         System.out.println("Количество обнуленных ячеек: " + countZeroCell);
 
         System.out.println("\n4. Вывод элементов массива лесенкой в обратном порядке");
-        char[] arrLetters = new char[26];
-        length = arrLetters.length;
+        char[] arrEngLetters = new char[26];
+        length = arrEngLetters.length;
         for(int i = 0; i < length; i++) {
-            arrLetters[i] = (char) (i+65);
+            arrEngLetters[i] = (char) (i + 65);
           }
-        for(int i = 0; i <= length - 1; i++) {
+        for(int i = 0; i < length; i++) {
             for(int j = 0; j <= i; j++) {
-                System.out.print(arrLetters[length - 1 - j]);
+                System.out.print(arrEngLetters[length - 1 - j]);
             }
             System.out.println();
         }
@@ -65,23 +67,21 @@ public class ArrayTheme {
         int[] numbers4 = new int[30];
         length = numbers4.length;
         for(int i = 0; i < length; i++) {
-            numbers4[i] = 60 + (int) (Math.random() * 40);
-            boolean hasCopy = false;
+            boolean copied = false;
             do {
                 for(int j = 0; j < i; j++) {
                     if (numbers4[i] == numbers4[j]) {
                         numbers4[i] = 60 + (int) (Math.random() * 40);
-                        hasCopy = true;
+                        copied = true;
                         break;
-                    } else {
-                        hasCopy = false;
                     }
+                    copied = false;
                 }
-            } while (hasCopy);
+            } while (copied);
         }
         // сортировка массива
-        for(int i = numbers4.length-1 ; i > 0 ; i--) {
-            for(int j = 0 ; j < i ; j++) {
+        for(int i = numbers4.length - 1; i > 0; i--) {
+            for(int j = 0; j < i; j++) {
                 if(numbers4[j] > numbers4[j + 1]) {
                     int tmp = numbers4[j];
                     numbers4[j] = numbers4[j + 1];
