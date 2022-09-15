@@ -1,7 +1,6 @@
 package com.startjava.lesson_2_3_4.array;
 
 public class ArrayTheme {
-
     public static void main(String[] args) {
         int length = 0;
         System.out.println("1. Реверс значений массива");
@@ -9,8 +8,7 @@ public class ArrayTheme {
         System.out.println("Исходный массив:");
         printArray(numbers);
         length = numbers.length;
-        for(int i = 0; i < length / 2; i++)
-        {
+        for(int i = 0; i < length / 2; i++) {
             int tmp = numbers[i];
             numbers[i] = numbers[length - i - 1];
             numbers[length - i - 1] = tmp;
@@ -34,13 +32,13 @@ public class ArrayTheme {
         double[] numbers3 = new double[15];
         length = numbers3.length;
         for(int i = 0; i < length; i++) {
-          numbers3[i] = Math.random();
+            numbers3[i] = Math.random();
         }
         System.out.println("Исходный массив:");
         printArray(numbers3,7);
         int countZeroCell = 0;
         double valueMiddleCeil = numbers3[(int) Math.round((double) length / 2)];
-        for(int i = 0; i < length; i++){
+        for(int i = 0; i < length; i++) {
             if(numbers3[i] > valueMiddleCeil) {
                 numbers3[i] = 0;
                 countZeroCell++;
@@ -50,65 +48,48 @@ public class ArrayTheme {
         printArray(numbers3, 7);
         System.out.println("Количество обнуленных ячеек: " + countZeroCell);
 
-//        System.out.println("\n4. Вывод элементов массива лесенкой в обратном порядке");
-//        char[] arrLetters = new char[26];
-//        length = arrLetters.length;
-//        for(int i = 0; i < length; i++) {
-//            arrLetters[i] = (char) (i+65);
-//          }
-//        for(int i = 0; i <= length - 1; i++) {
-//            for (int j = 0; j <= i; j++) {
-//                System.out.print(arrLetters[length - 1 - j]);
-//            }
-//            System.out.println();
-//        }
+        System.out.println("\n4. Вывод элементов массива лесенкой в обратном порядке");
+        char[] arrLetters = new char[26];
+        length = arrLetters.length;
+        for(int i = 0; i < length; i++) {
+            arrLetters[i] = (char) (i+65);
+          }
+        for(int i = 0; i <= length - 1; i++) {
+            for(int j = 0; j <= i; j++) {
+                System.out.print(arrLetters[length - 1 - j]);
+            }
+            System.out.println();
+        }
 
         System.out.println("\n5. Генерация уникальных чисел");
         int[] numbers4 = new int[30];
         length = numbers4.length;
-        for (int i = 0; i < length; i++) {
+        for(int i = 0; i < length; i++) {
             numbers4[i] = 60 + (int) (Math.random() * 40);
-            //if(i > 0) {
-                boolean hasCopy = false;
-                do {
-                    for(int j = 0; j < i; j++) {
-                        if(numbers4[i] == numbers4[j]) {
-                            numbers4[i] = 60 + (int) (Math.random() * 40);
-                            hasCopy = true;
-                            break;
-                            //System.out.println("Такое число есть в массиве " + i);
-                        } else {
-                            hasCopy = false;
-                        }
-                    }
-                }while (hasCopy);
-
+            boolean hasCopy = false;
+            do {
                 for(int j = 0; j < i; j++) {
-                    if(numbers4[i] == numbers4[j]) {
-                        //numbers4[i] = 60 + (int) (Math.random() * 40);
-                        System.out.println("Такое число есть в массиве " + i);
+                    if (numbers4[i] == numbers4[j]) {
+                        numbers4[i] = 60 + (int) (Math.random() * 40);
+                        hasCopy = true;
+                        break;
+                    } else {
+                        hasCopy = false;
                     }
                 }
-           //}
+            } while (hasCopy);
         }
         // сортировка массива
-        int max = numbers4[0];
-        for(int i = 1; i < length; i++) {
-            if(numbers4[i] < max) {
-                numbers4[i-1] = numbers4[i];
-                max = numbers4[i];
+        for(int i = numbers4.length-1 ; i > 0 ; i--) {
+            for(int j = 0 ; j < i ; j++) {
+                if(numbers4[j] > numbers4[j + 1]) {
+                    int tmp = numbers4[j];
+                    numbers4[j] = numbers4[j + 1];
+                    numbers4[j + 1] = tmp;
+                }
             }
         }
-
         printArray(numbers4, 10);
-//
-//        при этом числа повторяться не должны
-//        если число уже есть в массиве, сгенерите новое
-//        делайте это до тех пор, пока не сгенерится число, которого еще нет в массиве
-//        отобразите полученный массив по 10 чисел в строке, отсортировав его по возрастанию
-
-
-
     }
 
     private static void printArray(int[] numbers) {
@@ -141,6 +122,4 @@ public class ArrayTheme {
             }
         }
     }
-
-
 }
