@@ -91,33 +91,33 @@ public class ArrayTheme {
         printArray(numbers4, 10);
 
         System.out.println("\n6. Сдвиг элементов массива");
-        String[] arrString = {"    ", "AA", "", "BBB", "CC", "D", "    ", "E", "FF", "G", ""};
-        length = arrString.length;
+        String[] srcArrString = {"    ", "AA", "", "BBB", "CC", "D", "    ", "E", "FF", "G", ""};
+        length = srcArrString.length;
         int cntNonBlank = 0;
         // вычисление количества непустых элементов массива
-        for(String string : arrString) {
+        for(String string : srcArrString) {
             if(!string.isBlank()) {
                 cntNonBlank++;
             }
         }
-        String[] arrStringCopy = new String[cntNonBlank];
+        String[] destArrString = new String[cntNonBlank];
         int insertPosition = 0;
         int i = 0;
         while(i < length) {
             cntNonBlank = 1;
-            if(!arrString[i].isBlank()) {
+            if(!srcArrString[i].isBlank()) {
                 int j = i + 1;
-                while(!arrString[j].isBlank()) {
+                while(!srcArrString[j].isBlank()) {
                     cntNonBlank++;
                     j++;
                 }
-                System.arraycopy(arrString, i, arrStringCopy, insertPosition, cntNonBlank);
+                System.arraycopy(srcArrString, i, destArrString, insertPosition, cntNonBlank);
                 insertPosition += cntNonBlank;
             }
             i += cntNonBlank;
         }
-        printArray(arrString);
-        printArray(arrStringCopy);
+        printArray(srcArrString);
+        printArray(destArrString);
     }
 
     private static void printArray(int[] numbers) {
