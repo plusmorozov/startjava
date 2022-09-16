@@ -12,7 +12,6 @@ public class ArrayTheme {
             length--;
             numbers[i] = numbers[length];
             numbers[length] = tmp;
-
         }
         System.out.println("Массив после модификации:");
         printArray(numbers);
@@ -55,7 +54,7 @@ public class ArrayTheme {
         length = arrEngLetters.length;
         for(int i = 0; i < length; i++) {
             arrEngLetters[i] = (char) (i + 65);
-          }
+        }
         for(int i = 0; i < length; i++) {
             for(int j = 0; j <= i; j++) {
                 System.out.print(arrEngLetters[length - 1 - j]);
@@ -67,17 +66,17 @@ public class ArrayTheme {
         int[] numbers4 = new int[30];
         length = numbers4.length;
         for(int i = 0; i < length; i++) {
-            boolean copied = false;
+            boolean unique = false;
             do {
                 for(int j = 0; j < i; j++) {
                     if (numbers4[i] == numbers4[j]) {
                         numbers4[i] = 60 + (int) (Math.random() * 40);
-                        copied = true;
+                        unique = true;
                         break;
                     }
-                    copied = false;
+                    unique = false;
                 }
-            } while (copied);
+            } while (unique);
         }
         // сортировка массива
         for(int i = numbers4.length - 1; i > 0; i--) {
@@ -90,6 +89,35 @@ public class ArrayTheme {
             }
         }
         printArray(numbers4, 10);
+
+        System.out.println("\n6. Сдвиг элементов массива");
+        String[] arrString = {"    ", "AA", "", "BBB", "CC", "D", "    ", "E", "FF", "G", ""};
+        length = arrString.length;
+        int cntNonBlank = 0;
+        // вычисление количества непустых элементов массива
+        for(String string : arrString) {
+            if(!string.isBlank()) {
+                cntNonBlank++;
+            }
+        }
+        String[] arrStringCopy = new String[cntNonBlank];
+        int insertPosition = 0;
+        int i = 0;
+        while(i < length) {
+            cntNonBlank = 1;
+            if(!arrString[i].isBlank()) {
+                int j = i + 1;
+                while(!arrString[j].isBlank()) {
+                    cntNonBlank++;
+                    j++;
+                }
+                System.arraycopy(arrString, i, arrStringCopy, insertPosition, cntNonBlank);
+                insertPosition += cntNonBlank;
+            }
+            i += cntNonBlank;
+        }
+        printArray(arrString);
+        printArray(arrStringCopy);
     }
 
     private static void printArray(int[] numbers) {
@@ -124,5 +152,12 @@ public class ArrayTheme {
                 System.out.println();
             }
         }
+    }
+
+    private static void printArray(String[] arrString) {
+        for(String string : arrString) {
+            System.out.print(string + " ");
+        }
+        System.out.println();
     }
 }
