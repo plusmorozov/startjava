@@ -6,19 +6,24 @@ public class Calculator {
     private int result;
     private char mathOperation;
 
-    public void setNum1(int num1) {
+    private void setNum1(int num1) {
         this.num1 = num1;
     }
 
-    public void setNum2(int num2) {
+    private void setNum2(int num2) {
         this.num2 = num2;
     }
 
-    public void setMathOperation(char mathOperation) {
+    private void setMathOperation(char mathOperation) {
         this.mathOperation = mathOperation;
     }
 
-    public int calculate() {
+    public int calculate(String[] mathExpression) {
+        setNum1(Integer.parseInt(mathExpression[0]));
+        char[] charArray = mathExpression[1].toCharArray();
+        setMathOperation(charArray[0]);
+        setNum2(Integer.parseInt(mathExpression[2]));
+
         switch (mathOperation) {
             case '+':
                 return Math.addExact(num1, num2);
