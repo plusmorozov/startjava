@@ -1,5 +1,6 @@
 package com.startjava.lesson_2_3_4.calculator;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class CalculatorTest {
@@ -10,15 +11,13 @@ public class CalculatorTest {
         Calculator calculator = new Calculator();
         Scanner scanner = new Scanner(System.in);
         do {
-            System.out.print("Введите первое число: ");
-            calculator.setNum1(scanner.nextInt());
-            scanner.nextLine();
-            System.out.print("Введите знак математической операции: ");
-            calculator.setMathOperation(scanner.nextLine().charAt(0));
-            System.out.print("Введите второе число: "); 
-            calculator.setNum2(scanner.nextInt());
+            System.out.print("Введите выражение, которое требуется вычислить: ");
+            String[] mathExpression = scanner.nextLine().split(" ");
+            calculator.setNum1(Integer.parseInt(mathExpression[0]));
+            char[] charArray = mathExpression[1].toCharArray();
+            calculator.setMathOperation(charArray[0]);
+            calculator.setNum2(Integer.parseInt(mathExpression[2]));
             System.out.println("Результат: " + calculator.calculate());
-            scanner.nextLine();
             do {
                 System.out.print("Хотите продолжить вычисления? [yes/no]: ");
                 userAnswer = scanner.nextLine();

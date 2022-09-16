@@ -21,25 +21,17 @@ public class Calculator {
     public int calculate() {
         switch (mathOperation) {
             case '+':
-                return num1 + num2;
+                return Math.addExact(num1, num2);
             case '-':
-                return num1 - num2;
+                return Math.subtractExact(num1, num2);
             case '*':
-                return num1 * num2;
+                return Math.multiplyExact(num1, num2);
             case '/':
-                return num1 / num2;
+                return Math.floorDiv(num1, num2);
             case '^':
-                return pow(num1, num2);
+                return (int) Math.pow(num1, num2);
             case '%':
-                return num1 % num2;
-        }
-        return result;
-    }
-
-    private int pow(int num1, int num2) {
-        result = 1;
-        for (int i = 1; i <= num2; i++) {
-            result *= num1;
+                return Math.floorMod(num1, num2);
         }
         return result;
     }
