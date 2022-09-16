@@ -7,7 +7,6 @@ public class CalculatorTest {
 
     public static void main(String[] args) {
         String userAnswer;
-
         Calculator calculator = new Calculator();
         Scanner scanner = new Scanner(System.in);
         do {
