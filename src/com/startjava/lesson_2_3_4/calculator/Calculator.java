@@ -1,43 +1,22 @@
 package com.startjava.lesson_2_3_4.calculator;
 
 public class Calculator {
-    private int num1;
-    private int num2;
-    private int result;
-    private char mathOperation;
 
-    private void setNum1(int num1) {
-        this.num1 = num1;
-    }
-
-    private void setNum2(int num2) {
-        this.num2 = num2;
-    }
-
-    private void setMathOperation(char mathOperation) {
-        this.mathOperation = mathOperation;
-    }
-
-    public int calculate(String[] mathExpression) {
-        setNum1(Integer.parseInt(mathExpression[0]));
+    public static int calculate(String[] mathExpression) {
+        int num1 = Integer.parseInt(mathExpression[0]);
+        int num2 = Integer.parseInt(mathExpression[2]);
         char[] charArray = mathExpression[1].toCharArray();
-        setMathOperation(charArray[0]);
-        setNum2(Integer.parseInt(mathExpression[2]));
+        char mathOperation = charArray[0];
 
-        switch (mathOperation) {
-            case '+':
-                return Math.addExact(num1, num2);
-            case '-':
-                return Math.subtractExact(num1, num2);
-            case '*':
-                return Math.multiplyExact(num1, num2);
-            case '/':
-                return Math.floorDiv(num1, num2);
-            case '^':
-                return (int) Math.pow(num1, num2);
-            case '%':
-                return Math.floorMod(num1, num2);
-        }
+        int result = switch (mathOperation) {
+            case '+' -> Math.addExact(num1, num2);
+            case '-' -> Math.subtractExact(num1, num2);
+            case '*' -> Math.multiplyExact(num1, num2);
+            case '/' -> Math.floorDiv(num1, num2);
+            case '^' -> (int) Math.pow(num1, num2);
+            case '%' -> Math.floorMod(num1, num2);
+            default -> throw new IllegalStateException("Неожиданное значение: " + mathOperation);
+        };
         return result;
     }
 }
