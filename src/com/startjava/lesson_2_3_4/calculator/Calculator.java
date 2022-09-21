@@ -4,22 +4,22 @@ import java.util.InputMismatchException;
 
 public class Calculator {
 
-    public static int calculate(String mathExpression) throws InputMismatchException, IllegalStateException {
-        String[] arrMathExpression = mathExpression.split(" ");
+    public static int calculate(String partsExpression ) {
+        String[] arrMathExpression = partsExpression .split(" ");
         int num1 = Integer.parseInt(arrMathExpression[0]);
         int num2 = Integer.parseInt(arrMathExpression[2]);
         char mathOperation = arrMathExpression[1].charAt(0);
-            if((num1 < 0) || (num2 < 0)) {
-                throw new InputMismatchException("Числа должны быть положительными!");
-            }
-            return switch (mathOperation) {
+        if((num1 < 1) || (num2 < 1)) {
+            throw new InputMismatchException();
+        }
+        return switch (mathOperation) {
             case '+' -> Math.addExact(num1, num2);
             case '-' -> Math.subtractExact(num1, num2);
             case '*' -> Math.multiplyExact(num1, num2);
             case '/' -> Math.floorDiv(num1, num2);
             case '^' -> (int) Math.pow(num1, num2);
             case '%' -> Math.floorMod(num1, num2);
-            default -> throw new IllegalStateException("Неожиданное значение: " + mathOperation);
+            default -> throw new IllegalStateException();
         };
     }
 }
