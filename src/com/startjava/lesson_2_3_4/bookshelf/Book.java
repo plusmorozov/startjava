@@ -1,17 +1,14 @@
 package com.startjava.lesson_2_3_4.bookshelf;
 
 public class Book {
+    private int id;
     private String author;
     private String title;
     private int year;
 
-//    Book(String author,String title, int year){
-//        setAuthor(author);
-//        setTitle(title);
-//        setYear(year);
-//    }
 
     public Book(String author, String title, int year) {
+        this.id = id;
         this.author = author;
         this.title = title;
         this.year = year;
@@ -39,5 +36,13 @@ public class Book {
 
     public int getYear() {
         return year;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

@@ -3,10 +3,10 @@ package com.startjava.lesson_2_3_4.guess;
 import java.util.Arrays;
 
 public class Player {
-    public static final int CNT_ATTEMPTS = 10;
+
     private String name;
-    private int attempt;
-    private int[] nums = new int[CNT_ATTEMPTS];
+    private int attempt = 0;
+    private int[] nums = new int[GuessNumber.CNT_ATTEMPTS];
 
     public Player(String name) {
         this.name = name;
@@ -16,12 +16,13 @@ public class Player {
         return name;
     }
 
-    public void setNum(int num, int i) {
+    public void addNum(int num, int i) {
         this.nums[i] = num;
+        attempt++;
     }
 
-    public int getNum(int i) {
-        return nums[i];
+    public int getNum(int attempt) {
+        return nums[attempt];
     }
 
     public int[] getNums() {
@@ -30,10 +31,6 @@ public class Player {
 
     public void resetNums() {
         Arrays.fill(nums, 0, attempt, 0);
-    }
-
-    public void addAttempt() {
-        attempt++;
     }
 
     public void setAttempt(int attempt) {

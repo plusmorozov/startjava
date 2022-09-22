@@ -14,11 +14,21 @@ public class BookShelft {
         очистить полку
      */
 
-
     public static void addBook(String author, String title, int year) {
         books[0].setAuthor(author);
         books[0].setTitle(title);
         books[0].setYear(year);
-
     }
+
+    public static Book findBookById(int id) {
+        Book current = null;
+        for (Book book : books) {
+            if(book.getId() == id) {
+                current = book;
+                break;
+            }
+        }
+        return current;
+    }
+
 }
