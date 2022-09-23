@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class Player {
 
     private String name;
-    private int attempt = 0;
+    private int attempt;
     private int[] nums = new int[GuessNumber.CNT_ATTEMPTS];
 
     public Player(String name) {
@@ -16,8 +16,8 @@ public class Player {
         return name;
     }
 
-    public void addNum(int num, int i) {
-        this.nums[i] = num;
+    public void addNum(int num) {
+        this.nums[attempt] = num;
         attempt++;
     }
 

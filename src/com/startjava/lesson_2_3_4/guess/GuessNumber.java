@@ -3,7 +3,7 @@ package com.startjava.lesson_2_3_4.guess;
 import java.util.Scanner;
 
 public class GuessNumber {
-    public static final int CNT_ATTEMPTS = 2;
+    public static final int CNT_ATTEMPTS = 10;
     private Player player1;
     private Player player2;
     private int secretNum;
@@ -18,30 +18,29 @@ public class GuessNumber {
         System.out.println("У каждого игрока по " + CNT_ATTEMPTS + " попыток ");
         init();
         System.out.println("Загаданное число: " + secretNum);
-        int i = 0;
         do {
-            inputNum(player1, i);
-            if (checkNum(player1, i)) {
+            inputNum(player1);
+            if (checkNum(player1)) {
                 break;
             }
-            inputNum(player2, i);
-            i++;
-        } while (!checkNum(player2, i - 1) && i < CNT_ATTEMPTS);
+            inputNum(player2);
+        } while (!checkNum(player2) && player2.getAttempt() < CNT_ATTEMPTS);
         printPlayerNumber(player1);
         printPlayerNumber(player2);
     }
 
-    private void inputNum(Player player, int i) {
+    private void inputNum(Player player) {
         System.out.print("Игрок " + player.getName() + " введите число: ");
-        player.addNum(scanner.nextInt(), i);
+        player.addNum(scanner.nextInt());
     }
 
-    private boolean checkNum(Player player, int i) {
-        int num = player.getNum(i);
+    private boolean checkNum(Player player) {
+        int attempt = player.getAttempt() - 1;
+        int num = player.getNum(attempt);
         String name = player.getName();
         if (num == secretNum) {
             System.out.println("Игрок " + name + " угадал число " + secretNum + " c попытки № "
-                    + (player.getAttempt()));
+                    + player.getAttempt());
             return true;
         }
         if (num > secretNum) {
@@ -50,7 +49,7 @@ public class GuessNumber {
             System.out.println(name + ", введенное число меньше загаданного");
         }
         if(player.getAttempt() == CNT_ATTEMPTS) {
-            System.out.println("У игрока " + player.getName() + " закончились попытки");
+            System.out.println("У игрока " + name + " закончились попытки");
         }
         return false;
     }
