@@ -6,14 +6,6 @@ public class Book {
     private String title;
     private int year;
 
-
-//    public Book(String author, String title, int year) {
-//        this.id = id;
-//        this.author = author;
-//        this.title = title;
-//        this.year = year;
-//    }
-
     public void setAuthor(String author) {
         this.author = author;
     }
@@ -38,15 +30,15 @@ public class Book {
         return year;
     }
 
+    public String toString() {
+        return getAuthor() + ", " + getTitle() + ", " + getYear();
+    }
+
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String toString() {
-        return getAuthor() + ", " + getTitle() + ", " + getYear();
     }
 }
