@@ -17,7 +17,7 @@ public class Player {
     }
 
     public void addNum(int num) {
-        this.nums[attempt] = num;
+        nums[attempt] = num;
         attempt++;
     }
 

@@ -20,13 +20,21 @@ public class GuessNumber {
         System.out.println("Загаданное число: " + secretNum);
         do {
             inputNum(player1);
-            if (checkNum(player1)) {
+            if (isGuessed(player1)) {
                 break;
             }
             inputNum(player2);
-        } while (!checkNum(player2) && player2.getAttempt() < CNT_ATTEMPTS);
+        } while (!isGuessed(player2) && player2.getAttempt() < CNT_ATTEMPTS);
         printPlayerNumber(player1);
         printPlayerNumber(player2);
+    }
+
+    private void init() {
+        player1.setAttempt(0);
+        player2.setAttempt(0);
+        player1.resetNums();
+        player2.resetNums();
+        secretNum = (int) ((Math.random() * 100) + 1);
     }
 
     private void inputNum(Player player) {
@@ -34,7 +42,7 @@ public class GuessNumber {
         player.addNum(scanner.nextInt());
     }
 
-    private boolean checkNum(Player player) {
+    private boolean isGuessed(Player player) {
         int attempt = player.getAttempt() - 1;
         int num = player.getNum(attempt);
         String name = player.getName();
@@ -60,13 +68,5 @@ public class GuessNumber {
             System.out.print(num + " ");
         }
         System.out.println();
-    }
-
-    private void init() {
-        player1.setAttempt(0);
-        player2.setAttempt(0);
-        player1.resetNums();
-        player2.resetNums();
-        secretNum = (int) ((Math.random() * 100) + 1);
     }
 }
