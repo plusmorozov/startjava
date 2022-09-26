@@ -7,12 +7,12 @@ public class Book {
     private int year;
 
 
-    public Book(String author, String title, int year) {
-        this.id = id;
-        this.author = author;
-        this.title = title;
-        this.year = year;
-    }
+//    public Book(String author, String title, int year) {
+//        this.id = id;
+//        this.author = author;
+//        this.title = title;
+//        this.year = year;
+//    }
 
     public void setAuthor(String author) {
         this.author = author;
@@ -44,5 +44,9 @@ public class Book {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String toString() {
+        return getAuthor() + ", " + getTitle() + ", " + getYear();
     }
 }
