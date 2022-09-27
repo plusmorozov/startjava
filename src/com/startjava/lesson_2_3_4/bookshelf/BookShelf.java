@@ -9,45 +9,21 @@ public class BookShelf {
     Book[] books = new Book[bookShelfSize];
     private Scanner scanner = new Scanner(System.in);
 
-    /*
-        добавить книгу
-        найти книгу
-        удалить книгу
-        получить все книги (только для визуализации полки)
-        получить количество книг на полке
-        получить количество свободного места
-        очистить полку
-     */
-
     public void addBook() {
         if(cntBook < bookShelfSize) {
-//            books[cntBook] = new Book();
-//            System.out.print("Введите название книги: ");
-//            books[cntBook].setTitle(scanner.nextLine());
-//            System.out.print("Введите автора книги: ");
-//            books[cntBook].setAuthor(scanner.nextLine());
-//            System.out.print("Введите год издания книги: ");
-//            books[cntBook].setYear(scanner.nextInt());
-//            cnt_book++;
+            books[cntBook] = new Book();
+            System.out.print("Введите название книги: ");
+            books[cntBook].setTitle(scanner.nextLine());
+            System.out.print("Введите автора книги: ");
+            books[cntBook].setAuthor(scanner.nextLine());
+            System.out.print("Введите год издания книги: ");
+            books[cntBook].setYear(scanner.nextInt());
+            cntBook++;
 //            books[cntBook].setId(cntBook);
-//            Ввод тестовых данных
-//          _____________________________________
-            books[0] = new Book();
-            books[0].setId(0);
-            books[0].setTitle("Книга");
-            books[0].setAuthor("Автор                     №1");
-            books[0].setYear(2022);
-
-            books[1] = new Book();
-            books[1].setId(1);
-            books[1].setTitle("Книга2");
-            books[1].setAuthor("Автор     №1");
-            books[1].setYear(2022);
-
-            cntBook = 2;
-//          _____________________________________
         } else {
-            System.out.println("Книга не добавлена. Закончилось место на полке");
+            System.out.println();
+            System.out.println("Добавить книгу невозможно, закончилось место на полке");
+            System.out.println();
         }
     }
 
@@ -65,60 +41,56 @@ public class BookShelf {
     }
 
     public void deleteBook () {
-        findBookByTitle();
-
-        /*Book current = null;
-        for (Book book : books) {
-            if(book.getTitle() == title) {
-                // удалить книгу
-                break;
-            }
-        }*/
+        Book book = findBookByTitle();
+        if (book != null) {
+            int indexBook = getBookIndex(book);
+            System.arraycopy(books, indexBook + 1, books, indexBook, cntBook - (indexBook + 1));
+            cntBook--;
+        } else {
+            System.out.println("\nКнига не найдена на полке\n");
+        }
     }
 
-//    public void showBooks() {
-//        int lenghBookShelf = 0;
-//        for (int i = 0; i < cntBook; i ++) {
-//            lenghBookShelf = books[i].toString().length() > lenghBookShelf ? books[i].toString().length() : lenghBookShelf ;
-//        }
-//        System.out.println();
-//        for (int i = 0; i < cntBook; i ++) {
-//            System.out.print("|" + books[i].toString());
-//            // вывод недостающих до максимальной длины строки пробелов
-//            for (int j = 0; j < lenghBookShelf - books[i].toString().length(); j++) {
-//                System.out.print(" ");
-//            }
-//            System.out.println("|");
-//            // вывод разделителя между книгами
-//            System.out.print("|");
-//            for (int j = 0; j < lenghBookShelf; j++) {
-//                System.out.print("-");
-//            }
-//            System.out.println("|");
-//        }
-//        System.out.println();
-//    }
+    public int numberBooks() {
+        return cntBook;
+    }
+
+    public int freeSpaceShelf() {
+        return bookShelfSize - cntBook;
+    }
 
     public void printBookShelf() {
         int lenghBookShelf = 0;
         if(cntBook == 0) {
             System.out.println("\nПолка пуста\n");
         } else {
+            // вычисление максимальной длины полки
             for (int i = 0; i < cntBook; i ++) {
-                lenghBookShelf = books[i].toString().length() > lenghBookShelf ? books[i].toString().length() : lenghBookShelf ;
+                int lenghBook = books[i].toString().length();
+                if(lenghBook > lenghBookShelf) {
+                    lenghBookShelf = lenghBook;
+                }
             }
             System.out.println();
+            // вывод книг
             for (int i = 0; i < cntBook; i ++) {
                 printBook(i,lenghBookShelf - books[i].toString().length());
                 printLine(lenghBookShelf);
             }
             int i = 0;
+            // вывод пустых ячеек
             while (i < bookShelfSize - cntBook) {
                 printLine(lenghBookShelf);
                 i++;
             }
             System.out.println();
         }
+    }
+
+    public void clear() {
+        Arrays.fill(books, null);
+        cntBook = 0;
+        System.out.println("\nПолка очищена\n");
     }
 
     public void printBook(int idBook, int numSpace) {
@@ -138,16 +110,71 @@ public class BookShelf {
         System.out.println("|");
     }
 
-    public void clear() {
-        Arrays.fill(books, null);
-        cntBook = 0;
-        System.out.println("\nПолка очищена\n");
-    }
-    public int numberBooks() {
-        return cntBook;
+    public int getBookIndex (Book book) {
+        return Arrays.asList(books).indexOf(book);
     }
 
-    public int freeSpaceShelf() {
-        return bookShelfSize - cntBook;
+    public void testData() {
+        books[0] = new Book();
+//        books[0].setId(0);
+        books[0].setTitle("Мастер и Маргарита");
+        books[0].setAuthor("Булгаков М.");
+        books[0].setYear(2013);
+
+        books[1] = new Book();
+//        books[1].setId(1);
+        books[1].setTitle("Зеленая миля");
+        books[1].setAuthor("Стивен Кинг");
+        books[1].setYear(2014);
+
+        books[2] = new Book();
+//        books[2].setId(2);
+        books[2].setTitle("Шерлок Холмс");
+        books[2].setAuthor("Артур Конан Дойл");
+        books[2].setYear(2019);
+
+        books[3] = new Book();
+//        books[3].setId(3);
+        books[3].setTitle("Прислуга");
+        books[3].setAuthor("Кэтрин Стокетт");
+        books[3].setYear(2011);
+
+        books[4] = new Book();
+//        books[4].setId(4);
+        books[4].setTitle("Граф Монте-Кристо");
+        books[4].setAuthor("Александр Дюма");
+        books[4].setYear(2017);
+
+        books[5] = new Book();
+//        books[5].setId(5);
+        books[5].setTitle("Крестный отец");
+        books[5].setAuthor("Марио Пьюзо");
+        books[5].setYear(2002);
+
+        books[6] = new Book();
+//        books[6].setId(6);
+        books[6].setTitle("О всех созданиях - больших и малых");
+        books[6].setAuthor("Джеймс Хэрриорт");
+        books[6].setYear(2012);
+
+        books[7] = new Book();
+//        books[7].setId(7);
+        books[7].setTitle("Двенадцать стульев");
+        books[7].setAuthor("Илья Ильф, Евгений Петров");
+        books[7].setYear(2018);
+
+        books[8] = new Book();
+//        books[8].setId(8);
+        books[8].setTitle("Отверженные");
+        books[8].setAuthor("Виктор Гюго");
+        books[8].setYear(2020);
+
+        books[9] = new Book();
+//        books[9].setId(9);
+        books[9].setTitle("Алмазная колесница");
+        books[9].setAuthor("Борис Акунин");
+        books[9].setYear(2016);
+
+        cntBook = 10;
     }
 }

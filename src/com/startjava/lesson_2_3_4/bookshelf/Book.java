@@ -1,7 +1,8 @@
 package com.startjava.lesson_2_3_4.bookshelf;
 
+import java.util.Arrays;
+
 public class Book {
-    private int id;
     private String author;
     private String title;
     private int year;
@@ -32,13 +33,5 @@ public class Book {
 
     public String toString() {
         return getAuthor() + ", " + getTitle() + ", " + getYear();
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 }
