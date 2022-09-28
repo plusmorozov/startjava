@@ -3,6 +3,7 @@ package com.startjava.lesson_2_3_4.bookshelf;
 import java.util.Arrays;
 
 public class Book {
+
     private String author;
     private String title;
     private int year;
