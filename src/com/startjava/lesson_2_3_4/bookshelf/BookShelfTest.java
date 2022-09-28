@@ -49,7 +49,7 @@ public class BookShelfTest {
                     default -> System.out.println("Выбран несуществующий пункт меню");
                 }
             } catch(InputMismatchException e) {
-                System.out.println("!!! Введите корректное значение года !!!");
+                System.out.println("Введите корректное значение года");
             }
         } while (!exit);
     }

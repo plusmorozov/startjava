@@ -13,12 +13,13 @@ public class BookShelf {
     public void addBook() {
         if(cntBook < bookShelfSize) {
             books[cntBook] = new Book();
-            System.out.print("Введите название книги: ");
-            books[cntBook].setTitle(scanner.nextLine());
-            System.out.print("Введите автора книги: ");
-            books[cntBook].setAuthor(scanner.nextLine());
-            System.out.print("Введите год издания книги: ");
-            books[cntBook].setYear(scanner.nextInt());
+//            System.out.print("Введите название книги: ");
+//            books[cntBook].setTitle(scanner.nextLine());
+//            System.out.print("Введите автора книги: ");
+//            books[cntBook].setAuthor(scanner.nextLine());
+//            System.out.print("Введите год издания книги: ");
+//            books[cntBook].setYear(scanner.nextInt());
+
             cntBook++;
         } else {
             System.out.println();
@@ -115,56 +116,16 @@ public class BookShelf {
     }
 
     public void testData() {
-        books[0] = new Book();
-        books[0].setTitle("Мастер и Маргарита");
-        books[0].setAuthor("Булгаков М.");
-        books[0].setYear(2013);
-
-        books[1] = new Book();
-        books[1].setTitle("Зеленая миля");
-        books[1].setAuthor("Стивен Кинг");
-        books[1].setYear(2014);
-
-        books[2] = new Book();
-        books[2].setTitle("Шерлок Холмс");
-        books[2].setAuthor("Артур Конан Дойл");
-        books[2].setYear(2019);
-
-        books[3] = new Book();
-        books[3].setTitle("Прислуга");
-        books[3].setAuthor("Кэтрин Стокетт");
-        books[3].setYear(2011);
-
-        books[4] = new Book();
-        books[4].setTitle("Граф Монте-Кристо");
-        books[4].setAuthor("Александр Дюма");
-        books[4].setYear(2017);
-
-        books[5] = new Book();
-        books[5].setTitle("Крестный отец");
-        books[5].setAuthor("Марио Пьюзо");
-        books[5].setYear(2002);
-
-        books[6] = new Book();
-        books[6].setTitle("О всех созданиях - больших и малых");
-        books[6].setAuthor("Джеймс Хэрриорт");
-        books[6].setYear(2012);
-
-        books[7] = new Book();
-        books[7].setTitle("Двенадцать стульев");
-        books[7].setAuthor("Илья Ильф, Евгений Петров");
-        books[7].setYear(2018);
-
-        books[8] = new Book();
-        books[8].setTitle("Отверженные");
-        books[8].setAuthor("Виктор Гюго");
-        books[8].setYear(2020);
-
-        books[9] = new Book();
-        books[9].setTitle("Алмазная колесница");
-        books[9].setAuthor("Борис Акунин");
-        books[9].setYear(2016);
-
+        books[0] = new Book("Мастер и Маргарита", "Булгаков М.", 2013);
+        books[1] = new Book("Зеленая миля", "Стивен Кинг", 2014);
+        books[2] = new Book("Шерлок Холмс", "Артур Конан Дойл", 2019);
+        books[3] = new Book("Прислуга", "Кэтрин Стокетт", 2011);
+        books[4] = new Book("Граф Монте-Кристо", "Александр Дюма", 2017);
+        books[5] = new Book("Крестный отец", "Марио Пьюзо", 2002);
+        books[6] = new Book("О всех созданиях - больших и малых", "Джеймс Хэрриорт", 2012);
+        books[7] = new Book("Двенадцать стульев", "Илья Ильф, Евгений Петров", 2018);
+        books[8] = new Book("Отверженные", "Виктор Гюго", 2020);
+        books[9] = new Book("Алмазная колесница", "Борис Акунин", 2016);
         cntBook = 10;
     }
 }
