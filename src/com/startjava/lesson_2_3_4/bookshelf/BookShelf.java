@@ -1,25 +1,22 @@
 package com.startjava.lesson_2_3_4.bookshelf;
 
 import java.util.Arrays;
-import java.util.Scanner;
 
 public class BookShelf {
 
-    private int cntBook;
-    private int bookShelfSize = 10;
-    Book[] books = new Book[bookShelfSize];
-    private Scanner scanner = new Scanner(System.in);
+    private static int cntBook;
+    private static int bookShelfSize;
+    private static Book[] books;
+
+    public BookShelf() {
+        cntBook = 0;
+        bookShelfSize = 10;
+        books = new Book[bookShelfSize];
+    }
 
     public void addBook() {
         if(cntBook < bookShelfSize) {
             books[cntBook] = new Book();
-//            System.out.print("Введите название книги: ");
-//            books[cntBook].setTitle(scanner.nextLine());
-//            System.out.print("Введите автора книги: ");
-//            books[cntBook].setAuthor(scanner.nextLine());
-//            System.out.print("Введите год издания книги: ");
-//            books[cntBook].setYear(scanner.nextInt());
-
             cntBook++;
         } else {
             System.out.println();
@@ -28,9 +25,7 @@ public class BookShelf {
         }
     }
 
-    public Book findBookByTitle() {
-        System.out.print("Введите название книги: ");
-        String title = scanner.nextLine();
+    public Book findBookByTitle(String title) {
         Book current = null;
         for (int i = 0; i < cntBook; i++) {
             if(books[i].getTitle().equals(title)) {
@@ -41,8 +36,8 @@ public class BookShelf {
         return current;
     }
 
-    public void deleteBook () {
-        Book book = findBookByTitle();
+    public void deleteBook (String title) {
+        Book book = findBookByTitle(title);
         if (book != null) {
             int indexBook = getBookIndex(book);
             System.arraycopy(books, indexBook + 1, books, indexBook, cntBook - (indexBook + 1));
@@ -60,59 +55,27 @@ public class BookShelf {
         return bookShelfSize - cntBook;
     }
 
-    public void printBookShelf() {
-        int lenghBookShelf = 0;
-        if(cntBook == 0) {
-            System.out.println("\nПолка пуста\n");
-        } else {
-            // вычисление максимальной длины полки
-            for (int i = 0; i < cntBook; i ++) {
-                int lenghBook = books[i].toString().length();
-                if(lenghBook > lenghBookShelf) {
-                    lenghBookShelf = lenghBook;
-                }
-            }
-            System.out.println();
-            // вывод книг
-            for (int i = 0; i < cntBook; i ++) {
-                printBook(i,lenghBookShelf - books[i].toString().length());
-                printLine(lenghBookShelf);
-            }
-            int i = 0;
-            // вывод пустых ячеек
-            while (i < bookShelfSize - cntBook) {
-                printLine(lenghBookShelf);
-                i++;
-            }
-            System.out.println();
-        }
-    }
-
     public void clear() {
         Arrays.fill(books, null);
         cntBook = 0;
         System.out.println("\nПолка очищена\n");
     }
 
-    public void printBook(int idBook, int numSpace) {
-        System.out.print("|" + books[idBook].toString());
-        // вывод недостающих до максимальной длины строки пробелов
-        for (int i = 0; i < numSpace; i++) {
-            System.out.print(" ");
-        }
-        System.out.println("|");
-    }
-
-    public void printLine (int lenghLine) {
-        System.out.print("|");
-        for (int i = 0; i < lenghLine; i++) {
-            System.out.print("-");
-        }
-        System.out.println("|");
-    }
-
     public int getBookIndex (Book book) {
         return Arrays.asList(books).indexOf(book);
+    }
+
+    public static int getBookShelfSize() {
+        return bookShelfSize;
+    }
+
+    public static int getCntBook() {
+        return cntBook;
+    }
+
+    public static Book[] getBooks() {
+        return Arrays.copyOf(books, books.length);
+        //return books;
     }
 
     public void testData() {
