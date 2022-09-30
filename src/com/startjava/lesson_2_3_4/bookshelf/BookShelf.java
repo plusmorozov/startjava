@@ -75,7 +75,6 @@ public class BookShelf {
 
     public static Book[] getBooks() {
         return Arrays.copyOf(books, books.length);
-        //return books;
     }
 
     public void testData() {
