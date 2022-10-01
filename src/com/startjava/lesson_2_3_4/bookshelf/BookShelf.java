@@ -5,39 +5,32 @@ import java.util.Arrays;
 public class BookShelf {
 
     private static int cntBook;
-    private static int bookShelfSize;
+    private static int BOOK_SHELF_SIZE = 10;
     private static Book[] books;
 
     public BookShelf() {
-        cntBook = 0;
-        bookShelfSize = 10;
-        books = new Book[bookShelfSize];
+        books = new Book[BOOK_SHELF_SIZE];
     }
 
-    public void addBook() {
-        if(cntBook < bookShelfSize) {
-            books[cntBook] = new Book();
+    public void addBook(Book book) {
+        if(cntBook < BOOK_SHELF_SIZE) {
+            books[cntBook] = book;
             cntBook++;
         } else {
-            System.out.println();
-            System.out.println("Добавить книгу невозможно, закончилось место на полке");
-            System.out.println();
+            System.out.println("\nДобавить книгу невозможно, закончилось место на полке\n");
         }
     }
 
-    public Book findBookByTitle(String title) {
-        Book current = null;
+    public Book findBook(String title) {
         for (int i = 0; i < cntBook; i++) {
             if(books[i].getTitle().equals(title)) {
-                current = books[i];
-                break;
+                return books[i];
             }
         }
-        return current;
+        return null;
     }
 
-    public void deleteBook (String title) {
-        Book book = findBookByTitle(title);
+    public void deleteBook(Book book) {
         if (book != null) {
             int indexBook = getBookIndex(book);
             System.arraycopy(books, indexBook + 1, books, indexBook, cntBook - (indexBook + 1));
@@ -47,12 +40,8 @@ public class BookShelf {
         }
     }
 
-    public int numberBooks() {
-        return cntBook;
-    }
-
-    public int freeSpaceShelf() {
-        return bookShelfSize - cntBook;
+    public int getFreeSpace() {
+        return BOOK_SHELF_SIZE - cntBook;
     }
 
     public void clear() {
@@ -61,12 +50,12 @@ public class BookShelf {
         System.out.println("\nПолка очищена\n");
     }
 
-    public int getBookIndex (Book book) {
+    public int getBookIndex(Book book) {
         return Arrays.asList(books).indexOf(book);
     }
 
     public static int getBookShelfSize() {
-        return bookShelfSize;
+        return BOOK_SHELF_SIZE;
     }
 
     public static int getCntBook() {
