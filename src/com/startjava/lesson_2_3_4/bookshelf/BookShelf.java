@@ -4,9 +4,9 @@ import java.util.Arrays;
 
 public class BookShelf {
 
-    private static int cntBook;
-    private static int BOOK_SHELF_SIZE = 10;
-    private static Book[] books;
+    private int cntBook;
+    private int BOOK_SHELF_SIZE = 10;
+    private Book[] books;
 
     public BookShelf() {
         books = new Book[BOOK_SHELF_SIZE];
@@ -54,15 +54,15 @@ public class BookShelf {
         return Arrays.asList(books).indexOf(book);
     }
 
-    public static int getBookShelfSize() {
+    public int getBookShelfSize() {
         return BOOK_SHELF_SIZE;
     }
 
-    public static int getCntBook() {
+    public int getCntBook() {
         return cntBook;
     }
 
-    public static Book[] getBooks() {
+    public Book[] getBooks() {
         return Arrays.copyOf(books, books.length);
     }
 

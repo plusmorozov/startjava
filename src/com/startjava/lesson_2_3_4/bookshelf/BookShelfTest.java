@@ -9,16 +9,16 @@ public class BookShelfTest {
         Scanner scanner = new Scanner(System.in);
         int selection;
         do {
-            printBookShelf();
+            printBookShelf(bookShelf);
             printMenu();
             selection = selectionHanding(bookShelf, scanner.nextInt());
         } while (selection != 7);
     }
 
-    private static void printBookShelf() {
+    private static void printBookShelf(BookShelf bookShelf) {
         int lenghBookShelf = 0;
-        int cntBook = BookShelf.getCntBook();
-        Book[] books = BookShelf.getBooks();
+        int cntBook = bookShelf.getCntBook();
+        Book[] books = bookShelf.getBooks();
         if(cntBook == 0) {
             System.out.println("\nПолка пуста\n");
         } else {
@@ -32,12 +32,12 @@ public class BookShelfTest {
             System.out.println();
             // вывод книг
             for (int i = 0; i < cntBook; i ++) {
-                printBook(i,lenghBookShelf - books[i].toString().length());
+                printBook(bookShelf, i,lenghBookShelf - books[i].toString().length());
                 printLine(lenghBookShelf);
             }
             int i = 0;
             // вывод пустых ячеек
-            while (i < BookShelf.getBookShelfSize() - cntBook) {
+            while (i < bookShelf.getBookShelfSize() - cntBook) {
                 printLine(lenghBookShelf);
                 i++;
             }
@@ -83,7 +83,7 @@ public class BookShelfTest {
                     System.out.println("\nКнига не найдена\n");
                 } else {
                     printLine(book.toString().length());
-                    printBook(bookShelf.getBookIndex(book), 0);
+                    printBook(bookShelf, bookShelf.getBookIndex(book), 0);
                     printLine(book.toString().length());
                 }
             }
@@ -101,8 +101,8 @@ public class BookShelfTest {
         return selection;
     }
 
-    private static void printBook(int idBook, int numSpace) {
-        Book[] books = BookShelf.getBooks();
+    private static void printBook(BookShelf bookShelf, int idBook, int numSpace) {
+        Book[] books = bookShelf.getBooks();
         System.out.print("|" + books[idBook].toString());
         // вывод недостающих до максимальной длины строки пробелов
         for (int i = 0; i < numSpace; i++) {
