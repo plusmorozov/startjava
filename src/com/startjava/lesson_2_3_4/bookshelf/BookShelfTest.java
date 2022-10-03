@@ -66,8 +66,7 @@ public class BookShelfTest {
                     System.out.print("Введите год издания книги: ");
                 try {
                     int year = scanner.nextInt();
-                    String bookDescription = title + ", " + author + ", " + year;
-                    bookShelf.addBook(new Book(title, author, year, bookDescription.length()));
+                    bookShelf.addBook(new Book(title, author, year));
                 } catch(InputMismatchException e) {
                     System.out.println("Введите корректное значение года");
                 }

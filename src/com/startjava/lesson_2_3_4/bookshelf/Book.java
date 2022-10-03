@@ -7,11 +7,11 @@ public class Book {
     private int year;
     private int lengthBook;
 
-    public Book(String title, String author, int year, int lengthBook) {
+    public Book(String title, String author, int year) {
         this.title = title;
         this.author = author;
         this.year = year;
-        this.lengthBook = lengthBook;
+        this.lengthBook = (title + ", " + author + ", " + year).length();
     }
 
     public String getTitle() {
