@@ -33,7 +33,7 @@ SELECT *
            FROM Jaegers));
 
 -- отобразите средний вес роботов
-SELECT AVG(weight) AS "Средний вес роботов"
+SELECT AVG(weight) AS awg_weight
   FROM Jaegers;
 
 -- увеличьте на единицу количество уничтоженных kaiju у роботов, которые до сих пор не разрушены
