@@ -5,20 +5,23 @@ import java.util.Arrays;
 public class BookShelf {
 
     private int cntBook;
-    private int BOOK_SHELF_SIZE = 10;
+    private int BOOK_SHELF_CAPACITY = 10;
     private Book[] books;
+    private int maxLengthBook;
 
     public BookShelf() {
-        books = new Book[BOOK_SHELF_SIZE];
+        books = new Book[BOOK_SHELF_CAPACITY];
+        maxLengthBook = 0;
     }
 
     public void addBook(Book book) {
-        if(cntBook < BOOK_SHELF_SIZE) {
+        if(cntBook < BOOK_SHELF_CAPACITY) {
             books[cntBook] = book;
             cntBook++;
         } else {
             System.out.println("\nДобавить книгу невозможно, закончилось место на полке\n");
         }
+        setMaxLengthBook();
     }
 
     public Book findBook(String title) {
@@ -30,8 +33,9 @@ public class BookShelf {
         return null;
     }
 
-    public void deleteBook(Book book) {
-        if (book != null) {
+    public void deleteBook(String title) {
+       Book book = findBook(title);
+       if (book != null) {
             int indexBook = getBookIndex(book);
             System.arraycopy(books, indexBook + 1, books, indexBook, cntBook - (indexBook + 1));
             cntBook--;
@@ -41,7 +45,7 @@ public class BookShelf {
     }
 
     public int getFreeSpace() {
-        return BOOK_SHELF_SIZE - cntBook;
+        return BOOK_SHELF_CAPACITY - cntBook;
     }
 
     public void clear() {
@@ -55,7 +59,7 @@ public class BookShelf {
     }
 
     public int getBookShelfSize() {
-        return BOOK_SHELF_SIZE;
+        return BOOK_SHELF_CAPACITY;
     }
 
     public int getCntBook() {
@@ -64,6 +68,20 @@ public class BookShelf {
 
     public Book[] getBooks() {
         return Arrays.copyOf(books, books.length);
+    }
+
+    public int getMaxLenthBook() {
+        return maxLengthBook;
+    }
+
+    public void setMaxLengthBook() {
+        Book[] books = getBooks();
+        for (int i = 0; i < cntBook; i++) {
+            int lenghBook = books[i].toString().length();
+            if(lenghBook > maxLengthBook) {
+                maxLengthBook = lenghBook;
+            }
+        }
     }
 
     public void testData() {
@@ -78,5 +96,6 @@ public class BookShelf {
         books[8] = new Book("Отверженные", "Виктор Гюго", 2020);
         books[9] = new Book("Алмазная колесница", "Борис Акунин", 2016);
         cntBook = 10;
+        setMaxLengthBook();
     }
 }

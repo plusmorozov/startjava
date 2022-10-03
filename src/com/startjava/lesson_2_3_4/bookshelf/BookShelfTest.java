@@ -4,6 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class BookShelfTest {
+
     public static void main(String[] args) {
         BookShelf bookShelf = new BookShelf();
         Scanner scanner = new Scanner(System.in);
@@ -16,23 +17,17 @@ public class BookShelfTest {
     }
 
     private static void printBookShelf(BookShelf bookShelf) {
-        int lenghBookShelf = 0;
         int cntBook = bookShelf.getCntBook();
-        Book[] books = bookShelf.getBooks();
         if(cntBook == 0) {
             System.out.println("\nПолка пуста\n");
         } else {
-            // вычисление максимальной длины полки
-            for (int i = 0; i < cntBook; i ++) {
-                int lenghBook = books[i].toString().length();
-                if(lenghBook > lenghBookShelf) {
-                    lenghBookShelf = lenghBook;
-                }
-            }
+            int lenghBookShelf = bookShelf.getMaxLenthBook();
+            Book[] books = bookShelf.getBooks();
             System.out.println();
             // вывод книг
-            for (int i = 0; i < cntBook; i ++) {
-                printBook(bookShelf, i,lenghBookShelf - books[i].toString().length());
+            for (int i = 0; i < cntBook; i++) {
+                int numSpace = lenghBookShelf - books[i].toString().length();
+                printBook(bookShelf, i, numSpace);
                 printLine(lenghBookShelf);
             }
             int i = 0;
@@ -60,18 +55,18 @@ public class BookShelfTest {
                     """);
     }
 
-    private static int selectionHanding(BookShelf bookShelf, int selection){
+    private static int selectionHanding(BookShelf bookShelf, int selection) {
         Scanner scanner = new Scanner(System.in);
         switch (selection) {
             case 1 -> {
-                try {
                     System.out.print("Введите название книги: ");
                     String title = scanner.nextLine();
                     System.out.print("Введите автора книги: ");
                     String author = scanner.nextLine();
                     System.out.print("Введите год издания книги: ");
+                try {
                     int year = scanner.nextInt();
-                    bookShelf.addBook(new Book (title, author, year));
+                    bookShelf.addBook(new Book(title, author, year));
                 } catch(InputMismatchException e) {
                     System.out.println("Введите корректное значение года");
                 }
@@ -89,7 +84,7 @@ public class BookShelfTest {
             }
             case 3 -> {
                 System.out.print("Введите название книги: ");
-                bookShelf.deleteBook(bookShelf.findBook(scanner.nextLine()));
+                bookShelf.deleteBook(scanner.nextLine());
             }
             case 4 -> System.out.println("\nКоличество книг на полке: " + bookShelf.getCntBook() + "\n");
             case 5 -> System.out.println("\nСвободных мест на полке: " + bookShelf.getFreeSpace() + "\n");
@@ -103,7 +98,7 @@ public class BookShelfTest {
 
     private static void printBook(BookShelf bookShelf, int idBook, int numSpace) {
         Book[] books = bookShelf.getBooks();
-        System.out.print("|" + books[idBook].toString());
+        System.out.print("|" + books[idBook]);
         // вывод недостающих до максимальной длины строки пробелов
         for (int i = 0; i < numSpace; i++) {
             System.out.print(" ");
