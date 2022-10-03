@@ -11,7 +11,6 @@ public class BookShelf {
 
     public BookShelf() {
         books = new Book[BOOK_SHELF_CAPACITY];
-        maxLengthBook = 0;
     }
 
     public void addBook(Book book) {
@@ -21,7 +20,7 @@ public class BookShelf {
         } else {
             System.out.println("\nДобавить книгу невозможно, закончилось место на полке\n");
         }
-        setMaxLengthBook();
+        setMaxLengthBook(book);
     }
 
     public Book findBook(String title) {
@@ -34,9 +33,8 @@ public class BookShelf {
     }
 
     public void deleteBook(String title) {
-       Book book = findBook(title);
-       if (book != null) {
-            int indexBook = getBookIndex(book);
+        int indexBook = getBookIndex(title);
+        if(indexBook >= 0) {
             System.arraycopy(books, indexBook + 1, books, indexBook, cntBook - (indexBook + 1));
             cntBook--;
         } else {
@@ -54,8 +52,15 @@ public class BookShelf {
         System.out.println("\nПолка очищена\n");
     }
 
-    public int getBookIndex(Book book) {
-        return Arrays.asList(books).indexOf(book);
+    public int getBookIndex(String title) {
+        for (int i = 0; i < cntBook; i++) {
+            if(books[i].getTitle().equals(title)) {
+                return i;
+            }
+        }
+//      в findBook при отстутствии книги возвращается null и он обрабатывается,
+//      а в случае int, какое значение возвращать, если ничего не найдено?
+        return -1;
     }
 
     public int getBookShelfSize() {
@@ -74,28 +79,24 @@ public class BookShelf {
         return maxLengthBook;
     }
 
-    public void setMaxLengthBook() {
-        Book[] books = getBooks();
-        for (int i = 0; i < cntBook; i++) {
-            int lenghBook = books[i].toString().length();
-            if(lenghBook > maxLengthBook) {
-                maxLengthBook = lenghBook;
-            }
+    public void setMaxLengthBook(Book book) {
+        if(book.getLengthBook() > maxLengthBook) {
+            maxLengthBook = book.getLengthBook();
         }
     }
 
     public void testData() {
-        books[0] = new Book("Мастер и Маргарита", "Булгаков М.", 2013);
-        books[1] = new Book("Зеленая миля", "Стивен Кинг", 2014);
-        books[2] = new Book("Шерлок Холмс", "Артур Конан Дойл", 2019);
-        books[3] = new Book("Прислуга", "Кэтрин Стокетт", 2011);
-        books[4] = new Book("Граф Монте-Кристо", "Александр Дюма", 2017);
-        books[5] = new Book("Крестный отец", "Марио Пьюзо", 2002);
-        books[6] = new Book("О всех созданиях - больших и малых", "Джеймс Хэрриорт", 2012);
-        books[7] = new Book("Двенадцать стульев", "Илья Ильф, Евгений Петров", 2018);
-        books[8] = new Book("Отверженные", "Виктор Гюго", 2020);
-        books[9] = new Book("Алмазная колесница", "Борис Акунин", 2016);
+        books[0] = new Book("Мастер и Маргарита", "Булгаков М.", 2013, 33);
+        books[1] = new Book("Зеленая миля", "Стивен Кинг", 2014, 27);
+        books[2] = new Book("Шерлок Холмс", "Артур Конан Дойл", 2019, 32);
+        books[3] = new Book("Прислуга", "Кэтрин Стокетт", 2011, 26);
+        books[4] = new Book("Граф Монте-Кристо", "Александр Дюма", 2017, 35);
+        books[5] = new Book("Крестный отец", "Марио Пьюзо", 2002, 28);
+        books[6] = new Book("О всех созданиях - больших и малых", "Джеймс Хэрриорт", 2012, 57);
+        books[7] = new Book("Двенадцать стульев", "Илья Ильф, Евгений Петров", 2018, 47);
+        books[8] = new Book("Отверженные", "Виктор Гюго", 2020, 26);
+        books[9] = new Book("Алмазная колесница", "Борис Акунин", 2016, 34);
+        maxLengthBook = 57;
         cntBook = 10;
-        setMaxLengthBook();
     }
 }

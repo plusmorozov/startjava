@@ -66,19 +66,21 @@ public class BookShelfTest {
                     System.out.print("Введите год издания книги: ");
                 try {
                     int year = scanner.nextInt();
-                    bookShelf.addBook(new Book(title, author, year));
+                    String bookDescription = title + ", " + author + ", " + year;
+                    bookShelf.addBook(new Book(title, author, year, bookDescription.length()));
                 } catch(InputMismatchException e) {
                     System.out.println("Введите корректное значение года");
                 }
             }
             case 2 -> {
                 System.out.print("Введите название книги: ");
-                Book book = bookShelf.findBook(scanner.nextLine());
+                String title = scanner.nextLine();
+                Book book = bookShelf.findBook(title);
                 if(book == null) {
                     System.out.println("\nКнига не найдена\n");
                 } else {
                     printLine(book.toString().length());
-                    printBook(bookShelf, bookShelf.getBookIndex(book), 0);
+                    printBook(bookShelf, bookShelf.getBookIndex(title), 0);
                     printLine(book.toString().length());
                 }
             }
