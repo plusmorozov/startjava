@@ -9,7 +9,7 @@ SELECT *
 -- отобразите роботов нескольких серий, например Mark-1 и Mark-6
 SELECT *
   FROM Jaegers
- WHERE mark in (1, 3, 5);
+ WHERE mark IN (1, 3, 5);
 
 -- отсортируйте таблицу по убыванию по столбцу mark
 SELECT *
